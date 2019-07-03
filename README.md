@@ -1,7 +1,7 @@
 # Car rental management system using Asp.net Core 
 
 
-TODO: Car and client create edit and delete action were implemented automatically and need to be reimplemented.
+TODO: Car and client create edit and delete actions were implemented automatically and need to be reimplemented.
 ### Screenshots:
 
 
