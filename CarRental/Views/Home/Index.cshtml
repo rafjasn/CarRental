@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+    <h2>Car Renal Management System</h2>
+
+
+
+    <div class="panel panel-primary">
+        <a class="list-group-item" asp-controller="Cars" asp-action="Index">
+            <div class="panel-heading">
+                <h3 class="panel-title ">Rent Out Cars</h3>
+            </div>
+            <div class="panel-body">
+                Check cars in or out
+            </div>
+            </a>
+    </div>    <div class="panel panel-primary">
+        <a class="list-group-item" asp-controller="CarsAuto" asp-action="Index">
+            <div class="panel-heading">
+                <h3 class="panel-title ">Manage Cars</h3>
+            </div>
+            <div class="panel-body">
+                Add, Edit and Delete Cars
+            </div>
+            </a>
+    </div>    <div class="panel panel-primary">
+        <a class="list-group-item" asp-controller="CLientsAuto" asp-action="Index">
+            <div class="panel-heading">
+                <h3 class="panel-title ">Manage Clients</h3>
+            </div>
+            <div class="panel-body">
+                Add, Edit and Delete Clients, check their current and previous rent outs
+            </div>
+            </a>
+    </div>

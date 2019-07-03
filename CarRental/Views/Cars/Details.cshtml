@@ -1,0 +1,100 @@
+﻿@model CarRental.ViewModels.CarModels.CarDetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Car Details:</h2>
+
+<div>
+    <div class="row">
+
+        <div class="col-lg-4">
+            <h4 id="itemTitle">@Model.Manufacturer</h4>
+            <h5 id="itemAuthor">@Model.Model</h5>
+
+            <h5>Daily rent out cost: @Model.Cost $ </h5>
+
+
+            <h4 id="itemStatus">Status: @Model.Status</h4>
+
+
+
+            @if (Model.Status == "Damaged")
+            {
+                <div>
+                    <h3 class="text-danger">This car has been damaged and cannot be rented</h3>
+                    <p><a class="btn btn-lg btn-success" S role="button" asp-controller="Cars" asp-action="MarkRepaired" asp-route-id="@Model.CarId">Mark Car as repaired</a></p>
+                </div>
+            }
+
+            @if (Model.Status == "Rented Out")
+            {
+                <div>
+                    <p id="itemPatron">Rented out By: @Model.ClientName</p>
+                    <p id="itemDate">Return Date: @Model.ReturnDate</p>
+                    <p id="itemDays">Rental time: @Model.NumberOfDays.ToString("0.00") days</p>
+                    <p id="itemCost">Rental cost: @Model.TotalCost.ToString("0.00") $</p>
+                </div>
+                <p><a class="btn btn-lg btn-success" role="button" asp-controller="Cars" asp-action="CheckIn" asp-route-id="@Model.CarId">Check In</a></p>
+                <p><a class="btn btn-lg btn-danger" role="button" asp-controller="Cars" asp-action="MarkDamaged" asp-route-id="@Model.CarId">Mark Car as damaged</a></p>
+
+            }
+            @if (Model.Status == "Available")
+            {
+                <div>
+                    <p><a class="btn btn-lg btn-info" role="button" asp-controller="Cars" asp-action="Checkout" asp-route-id="@Model.CarId">Rent Out</a></p>
+                    <p><a class="btn btn-lg btn-danger" role="button" asp-controller="Cars" asp-action="MarkDamaged" asp-route-id="@Model.CarId">Mark Car as damaged</a></p>
+                </div>
+            }
+
+
+            <a class="btn btn-lg btn-primary" asp-action="Index">Back to List</a>
+
+        </div>
+
+
+
+
+
+
+
+
+        <div class="col-lg-8">
+            <h4>Rent History</h4>
+            <table class="table table-bordered table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th>Date Loaned</th>
+                        <th>Rent Out End</th>
+                        <th>Date returned</th>
+
+                        <th>Client Id</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var checkout in @Model.CheckoutHistory)
+                    {
+                    <tr>
+                        <td>@checkout.CheckedOut</td>
+                        <td>@checkout.ReturnDate</td>
+                        <td>@checkout.CheckedIn</td>
+
+                        <td>@checkout.ClientCard.Id</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+</div>

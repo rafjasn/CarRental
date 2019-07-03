@@ -1,0 +1,51 @@
+﻿@model CarRental.ViewModels.CarModels.CarIndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>List of cars</h2>
+
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+             Manufacturer
+            </th>
+            <th>
+                Model         
+            </th>
+            <th>
+              Production Year
+            </th>
+            <th>
+               Details
+            </th>
+    
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var car in Model.Cars) {
+        <tr>
+
+            <td>
+               @car.Manufacturer
+            </td>
+            <td>@car.Model
+            </td>
+            <td>
+                @car.Year
+            </td>
+            <td>
+                <a class="btn btn-info" asp-controller="Cars" asp-action="Details" asp-route-id="@car.Id">details</a>
+            </td>
+            @*<td>
+            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+        </td>*@
+        </tr>
+}
+    </tbody>
+</table>

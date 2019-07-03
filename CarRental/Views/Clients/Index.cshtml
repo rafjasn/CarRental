@@ -1,0 +1,64 @@
+﻿
+@model  CarRental.ViewModels.ClientModels.ClientIndexModel
+
+@{
+    ViewData["Title"] = "View";
+}
+
+<h2>View</h2>
+
+<table class="table table-bordered table-hover" id="patronIndexTable">
+    <thead>
+        <tr>
+            <th>
+                Profile Link
+            </th>
+            <th>
+                First Name
+            </th>
+            <th>
+                Last Name
+            </th>
+
+            <th>
+                Library card id
+            <th>
+                Overdue Fees
+            </th>
+            <th> Home library</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Clients)
+        {
+            <tr>
+                <td></td>
+                <td>
+                    <a asp-controller="Clients" asp-action="Details" asp-route-id="@item.Id"> Details</a>
+                </td>
+                <td>
+                    @item.FirstName
+                </td>
+                <td>
+                    @item.LastName
+                </td>
+                <td>
+                    @item.ClientCardId
+                </td>
+                <td>
+                    @item.OverdueFees
+                </td>
+                <td>
+                    @* @item.HomeLibraryBranch*@
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

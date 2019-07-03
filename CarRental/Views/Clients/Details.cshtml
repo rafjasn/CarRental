@@ -1,0 +1,109 @@
+﻿@model CarRental.ViewModels.ClientModels.ClientDetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Client Details</h2>
+
+<div class="row">
+    <div class="col-lg-4">
+        <div>
+            <h2>@Model.FirstName @Model.LastName</h2>
+            <div>
+                <div>Client Card ID: @Model.ClientCardId</div>
+                <div>Address: @Model.Address</div>
+                <div>Phone number: @Model.Telephone</div>
+                <div>Member Since: @Model.MemberSince</div>
+                @*@if (@Model.OverdueFees > 0)
+                    {
+                        <div id="patronHasFees">Current Fees Due: $@Model.OverdueFees</div>
+                    }
+                    else
+                    {
+                        <div id="patronNoFees">No Fees Currently Due.</div>
+
+                    }*@
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <h4>Cars Currently Rented Out</h4>
+        @if (@Model.CarsCheckedOut.Any())
+        {
+            <div>
+
+                @foreach (var checkout in @Model.CarsCheckedOut)
+                {
+
+
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">   @checkout.Car.Manufacturer @checkout.Car.Model  - (Car ID: @checkout.Car.Id)</div>
+                        <div class="panel-body">
+                            Since: @checkout.Since
+                            <br />
+                            To: @checkout.Until
+                            <br/>
+
+                            <a class="btn btn-block btn-success" asp-controller="Cars" asp-action="Details" asp-route-id="@checkout.Car.Id">Check In</a>
+
+                        </div>
+                    </div>
+
+
+
+
+
+
+                }
+
+            </div>
+        }
+        else
+        {
+            <div>No cars currently rented out.</div>
+
+        }
+    </div>
+
+
+
+
+
+    <div class="col-lg-4">
+        <h4>Previously rented cars</h4>
+        @if (@Model.CheckoutHistory.Any())
+        {
+    <div>
+
+        @foreach (var checkout in @Model.CheckoutHistory)
+        {
+
+            <div class="panel panel-warning">
+                <div class="panel-heading"> @checkout.Car.Manufacturer  @checkout.Car.Model - (Car ID: @checkout.Car.Id) </div>
+                <div class="panel-body">
+                    Rented Out: @checkout.CheckedOut
+                    <br />
+                    Rented to @checkout.ReturnDate
+                    <br />
+                    Returned  @checkout.CheckedIn
+                    <br />
+                    <a class="btn btn-block btn-info" asp-controller="Cars" asp-action="Details" asp-route-id="@checkout.Car.Id">Go to Car </a>
+
+                </div>
+            </div>
+
+        }
+
+    </div>
+        }
+        else
+        {
+            <div> No history</div>
+
+        }
+    </div>
+
+
+</div>
+

@@ -1,0 +1,48 @@
+﻿@model CarRental.ViewModels.CheckoutModels.CheckoutModel
+
+
+
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<h2>Checkout</h2>
+
+<div class="container">
+    <div class="header clearfix detailHeading">
+        <h2 class="text-muted">Checkout car</h2>
+    </div>
+
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-3">
+                <div>
+                    <p id="itemMan">@Model.Manufacturer</p>
+                    <p id="itemMod">@Model.Model</p>
+                   
+                </div>
+            </div>
+            @*you could also use tag helpers.*@
+            <div class="col-md-9">
+                @*this is an html helper - it creates an object that implements idisposable*@
+                @using (Html.BeginForm("PlaceCheckout", "Cars", FormMethod.Post))
+                {
+                    @Html.HiddenFor(a => a.CarId)
+                    <div>
+                        Please insert a Library Card ID.
+                        @Html.TextBoxFor(a => a.ClientCardId)
+                        @*write out a text box and set attributes according to info in the model*@
+                    </div>
+                    <div>
+                        Please insert return date
+                        @Html.TextBoxFor(a => a.ReturnTIme)
+                        @*write out a text box and set attributes according to info in the model*@
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-success btn-lg">Check out</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
